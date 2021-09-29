@@ -4,9 +4,11 @@ WORKDIR /user/app
 
 COPY package*.json ./
 
-RUN npm install
+RUN yarn global add nodemon --prefix /usr/local
+
+RUN yarn
 
 COPY . .
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
