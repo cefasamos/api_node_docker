@@ -1,13 +1,22 @@
-const { Router } = require('express');
+import { Router } from 'express';
+import multer from 'multer';
+import multerConfig from './config/multer';
+
+import UserController from './app/controllers/UserController';
+import SessionController from './app/controllers/SessionController';
+import FileController from './app/controllers/FileController';
+import authMiddleware from './app/middleware/auth';
 
 const routes = new Router();
-
-routes.get ('/health', (req, res) => {
-    res.send({mensage: 'Conect with success'});
+const upload = multer(multerConfig);
+routes.get('/', (req, res) => {
+  return res.json({ status: 'Ok!' });
 });
+routes.post('/users', UserController.store);
+routes.post('/sessions', SessionController.store);
 
-routes.get ('/', (req, res) => {
-    res.send({mensage: 'Hello World'});
-});
+routes.use(authMiddleware);
+routes.put('/users', UserController.update);
 
-module.exports = routes
+routes.post('/files', upload.single('file'), FileController.store);
+export default routes;

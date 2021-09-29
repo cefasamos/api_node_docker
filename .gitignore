@@ -1,3 +1,37 @@
-node_modules
+# OS generated files
+DS_Store
+.DS_Store?
+._*
+.*.sw[op]
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-yarn.lock
+# Editors and IDEs
+.idea/
+.vscode/
+
+# Dependencies
+node_modules/
+
+package-lock.json
+
+# dotenv environment variables file
+.env
+.env.*
+!.env.example
+
+# Compiled output
+build/
+dist/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Output of 'npm pack'
+*.tgz
+
+.docker
